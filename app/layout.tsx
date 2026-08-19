@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${inter.variable} ${playfair.variable} ${greatVibes.variable}`}>
       <body>
-        <main>{children}</main>
+        <main className="pb-32">{children}</main>
       </body>
     </html>
   );

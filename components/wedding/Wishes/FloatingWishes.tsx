@@ -1,16 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import type { WishesConfig } from "@/types/wedding";
 import { HoaSen } from "@/components/ui/QuanHoIcons";
 
 type WishErrors = { name?: string; message?: string };
 
-export function FloatingWishes({ config }: { config: WishesConfig }) {
+export const OPEN_WISHES_POPUP_EVENT = "wedding:open-wishes-popup";
+export const WISHES_POPUP_VISIBILITY_EVENT = "wedding:wishes-popup-visibility";
+
+export function FloatingWishes({ config, showTrigger = true }: { config: WishesConfig; showTrigger?: boolean }) {
   const [open, setOpen] = useState(false);
   const [errors, setErrors] = useState<WishErrors>({});
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    function handleOpen() {
+      setOpen(true);
+      setSubmitted(false);
+      setErrors({});
+    }
+
+    window.addEventListener(OPEN_WISHES_POPUP_EVENT, handleOpen);
+    return () => window.removeEventListener(OPEN_WISHES_POPUP_EVENT, handleOpen);
+  }, []);
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent(WISHES_POPUP_VISIBILITY_EVENT, { detail: { open } }));
+  }, [open]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,17 +58,19 @@ export function FloatingWishes({ config }: { config: WishesConfig }) {
   return (
     <>
       {/* Floating trigger button */}
-      <button
-        className="fixed bottom-5 left-5 z-30 flex items-center gap-2.5 border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-xs font-semibold tracking-[0.08em] text-[var(--color-muted)] shadow-[var(--shadow-floating)] transition-all duration-[var(--duration-base)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Gửi lời chúc"
-      >
-        <span>Gửi lời chúc</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-        </svg>
-      </button>
+      {showTrigger && (
+        <button
+          className="fixed bottom-5 left-5 z-30 flex items-center gap-2.5 border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-xs font-semibold tracking-[0.08em] text-[var(--color-muted)] shadow-[var(--shadow-floating)] transition-all duration-[var(--duration-base)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Gửi lời chúc"
+        >
+          <span>Gửi lời chúc</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+        </button>
+      )}
 
       {/* Popup overlay */}
       {open && (

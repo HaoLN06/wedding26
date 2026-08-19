@@ -77,7 +77,7 @@ export function WeddingExperience({
         <MusicPlayer music={music} shouldAutoplay={false} visible={invitationPhase === "opened"} />
       )}
       {invitationPhase === "opened" && <FloatingNav />}
-      {invitationPhase === "opened" && wishes && <FloatingWishes config={wishes} />}
+      {invitationPhase === "opened" && wishes && <FloatingWishes config={wishes} showTrigger={false} />}
     </WeddingMotionProvider>
   );
 }
