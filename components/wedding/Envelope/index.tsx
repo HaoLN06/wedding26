@@ -18,7 +18,7 @@ type EnvelopeProps = {
   onOpen?: () => void;
 };
 
-const OPENING_DURATION_MS = 2_000;
+const OPENING_DURATION_MS = 800;
 
 type BurstParticle = {
   kind: "heart" | "petal";

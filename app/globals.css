@@ -2,28 +2,29 @@
 
 :root {
   /* Quan họ Bắc Ninh palette — áo the, hoa sen, giấy dó */
-  --color-background: #faf6f0;
-  --color-surface: #fefbf7;
-  --color-foreground: #2d1f2e;
-  --color-muted: #6b5a6b;
-  --color-primary: #8b2252;
-  --color-primary-hover: #6e1a40;
+  --color-background: #f8f1e8;
+  --color-surface: #fffaf4;
+  --color-foreground: #2f2022;
+  --color-muted: #6a5853;
+  --color-primary: #7e203f;
+  --color-primary-hover: #651a32;
   --color-wine: #4a0e2e;
   --color-wine-soft: #5c1438;
-  --color-accent: #c9956c;
-  --color-border: #e2d4cc;
+  --color-accent: #c58f5d;
+  --color-border: #e5d5c8;
   --color-selection: #f0d4dc;
   --color-error: #8b3a3a;
   --color-on-image: #fff8f2;
-  --color-on-image-accent: #f2c9d4;
-  --color-hero-fallback: #6b4a5c;
+  --color-on-image-accent: #f3c9d6;
+  --color-hero-fallback: #6d3f4f;
   --hero-overlay: linear-gradient(
     to bottom,
-    rgb(45 31 46 / 14%) 0%,
-    rgb(45 31 46 / 22%) 38%,
-    rgb(45 31 46 / 74%) 100%
+    rgb(52 30 36 / 12%) 0%,
+    rgb(52 30 36 / 30%) 42%,
+    rgb(52 30 36 / 78%) 100%
   );
   --font-serif: var(--font-playfair), Georgia, serif;
+  --font-script: var(--font-great-vibes), "Times New Roman", cursive;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
@@ -51,7 +52,10 @@ html { scroll-behavior: smooth; scrollbar-gutter: stable; }
 body {
   margin: 0;
   overflow-x: hidden;
-  background: var(--color-background);
+  background:
+    radial-gradient(1200px 520px at 15% -10%, rgb(197 143 93 / 10%), transparent 70%),
+    radial-gradient(980px 460px at 90% 0%, rgb(126 32 63 / 8%), transparent 72%),
+    var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -106,6 +110,73 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
 }
 .text-body-lg { font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.8; }
 .text-caption { color: var(--color-muted); font-size: 0.78rem; letter-spacing: 0.08em; }
+
+.hero-signature-name {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-size: clamp(3.1rem, 11.5vw, 8.8rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  background: linear-gradient(140deg, #f6d39c 6%, #f2bdd0 52%, #f0c287 94%);
+  color: transparent;
+  text-shadow: 0 10px 28px rgb(25 16 18 / 26%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: normal;
+}
+
+.hero-ampersand {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 4.6vw, 2.7rem);
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-on-image-accent) 84%, white);
+  opacity: 0.95;
+}
+
+@media (max-width: 639px) {
+  .hero-signature-name {
+    font-size: clamp(2.7rem, 12.8vw, 4.2rem);
+    letter-spacing: 0.015em;
+  }
+
+  .hero-ampersand {
+    font-size: clamp(1.3rem, 6vw, 1.9rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-signature-name {
+    font-size: clamp(3.5rem, 9.4vw, 5.7rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-signature-name {
+    font-size: clamp(5.1rem, 8.2vw, 9.2rem);
+  }
+}
+
+.scroll-indicator {
+  position: relative;
+  width: 1px;
+  height: 2.2rem;
+  background: color-mix(in srgb, var(--color-on-image) 48%, transparent);
+  overflow: hidden;
+}
+
+.scroll-indicator::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -1px;
+  width: 3px;
+  height: 42%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-on-image) 94%, white);
+  animation: scroll-indicator-move 1.65s ease-in-out infinite;
+}
 
 .field-label {
   display: block;
@@ -200,6 +271,12 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes scroll-indicator-move {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.95; }
+  100% { transform: translateY(220%); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -208,5 +285,5 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
-  .album-reveal { opacity: 1; transform: none; }
+  .album-reveal { opacity: 1; transform: none;margin-bottom:2em }
 }

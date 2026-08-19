@@ -60,17 +60,17 @@ export function WeddingCountdown({ date }: WeddingCountdownProps) {
   }, [date]);
 
   if (countdown?.isPast) {
-    return <p className="font-[family-name:var(--font-serif)] text-xl tracking-wide text-[var(--color-on-image)]">Về chung một nhà</p>;
+    return <p className="font-[family-name:var(--font-serif)] text-2xl tracking-wide text-[var(--color-on-image)]">Về chung một nhà</p>;
   }
 
   return (
-    <div className="grid w-full max-w-md grid-cols-4" aria-label="Đếm ngược đến ngày cưới">
+    <div className="grid w-full max-w-lg grid-cols-4" aria-label="Đếm ngược đến ngày cưới">
       {labels.map(([key, label], index) => (
-        <div className={`px-1 text-center ${index > 0 ? "border-l border-white/25" : ""}`} key={key}>
-          <span className="block font-[family-name:var(--font-serif)] text-[clamp(1.45rem,7vw,2.5rem)] leading-none tabular-nums">
+        <div className={`px-2 text-center ${index > 0 ? "border-l border-white/25" : ""}`} key={key}>
+          <span className="block font-[family-name:var(--font-serif)] text-[clamp(1.55rem,6vw,2.7rem)] leading-none tabular-nums text-[color-mix(in_srgb,var(--color-on-image)_96%,white)]">
             {countdown ? String(countdown[key]).padStart(2, "0") : "--"}
           </span>
-          <span className="mt-2 block text-[0.6rem] font-medium tracking-[0.16em] uppercase text-[color-mix(in_srgb,var(--color-on-image)_75%,transparent)] sm:text-[0.68rem]">{label}</span>
+          <span className="mt-2 block text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-[color-mix(in_srgb,var(--color-on-image)_82%,transparent)] sm:text-[0.7rem]">{label}</span>
         </div>
       ))}
     </div>

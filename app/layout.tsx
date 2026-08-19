@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Great_Vibes, Inter, Playfair_Display } from "next/font/google";
 import { weddingConfig } from "@/config/wedding";
 import "./globals.css";
 
@@ -11,6 +11,12 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ["latin", "vietnamese"],
   variable: "--font-playfair",
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-great-vibes",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="vi" className={`${inter.variable} ${playfair.variable} ${greatVibes.variable}`}>
       <body>
         <main>{children}</main>
       </body>

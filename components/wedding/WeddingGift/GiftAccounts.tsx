@@ -50,9 +50,14 @@ function QrVisual({ account }: { account: GiftAccount }) {
       {account.qrImage ? (
         <Image src={account.qrImage} alt={`Mã QR mừng cưới ${account.label}`} fill sizes="128px" className="object-contain p-2" />
       ) : (
-        <div className="text-center" role="img" aria-label={`Mã QR ${account.label} đang được cập nhật`}>
-          <span className="block font-[family-name:var(--font-serif)] text-3xl italic text-[var(--color-primary)]">QR</span>
-          <span className="mt-1 block text-[0.5rem] font-semibold tracking-[0.12em] text-[var(--color-muted)] uppercase">Đang cập nhật</span>
+        <div className="grid h-full w-full p-2" role="img" aria-label={`Mã QR giả định cho ${account.label}`}>
+          <div className="grid h-full w-full grid-cols-7 gap-[2px] bg-white p-[3px]">
+            {Array.from({ length: 49 }, (_, index) => {
+              const dark = ((index * 17 + 9) % 5 === 0) || [0, 1, 7, 8, 40, 41, 47, 48].includes(index);
+              return <span className={dark ? "bg-[var(--color-foreground)]" : "bg-white"} key={index} />;
+            })}
+          </div>
+          <span className="mt-1 block text-center text-[0.5rem] font-semibold tracking-[0.1em] text-[var(--color-muted)] uppercase">QR giả định</span>
         </div>
       )}
     </div>

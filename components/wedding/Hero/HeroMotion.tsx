@@ -86,16 +86,16 @@ export function HeroContentMotion({
 
       <motion.h1
         id="hero-title"
-        className="font-[family-name:var(--font-serif)] text-[clamp(3.2rem,15vw,7.5rem)] leading-[0.98] font-medium tracking-[-0.05em] sm:leading-[0.94]"
+        className="flex max-w-[min(100%,22rem)] flex-wrap items-end justify-center gap-x-2 gap-y-1 leading-none sm:max-w-[30rem] sm:gap-x-3 md:max-w-[40rem] md:justify-start lg:max-w-[46rem]"
         variants={stagger}
       >
-        <motion.span className="inline-block" variants={fadeUp}>{groomName}</motion.span>{" "}
-        <motion.span className="inline-block font-normal text-[var(--color-on-image-accent)]" variants={fadeIn}>&amp;</motion.span>{" "}
-        <motion.span className="inline-block" variants={fadeUp}>{brideName}</motion.span>
+        <motion.span className="hero-signature-name" variants={fadeUp}>{groomName}</motion.span>
+        <motion.span className="hero-ampersand -translate-y-0.5 align-middle sm:-translate-y-1" variants={fadeIn}>&amp;</motion.span>
+        <motion.span className="hero-signature-name" variants={fadeUp}>{brideName}</motion.span>
       </motion.h1>
 
       <motion.time
-        className="mt-5 block text-xs font-medium tracking-[0.24em] text-[color-mix(in_srgb,var(--color-on-image)_90%,transparent)] sm:text-sm"
+        className="mt-6 block text-sm font-semibold tracking-[0.26em] text-[color-mix(in_srgb,var(--color-on-image)_96%,transparent)] sm:text-base"
         dateTime={weddingDate}
         variants={fadeUp}
       >
@@ -103,7 +103,7 @@ export function HeroContentMotion({
       </motion.time>
 
       {showCountdown && (
-        <motion.div className="mx-auto mt-7 flex justify-center border-t border-white/25 pt-6 md:mx-0 md:justify-start" variants={fadeUp}>
+        <motion.div className="mx-auto mt-8 flex justify-center border border-white/20 bg-black/10 px-5 py-5 backdrop-blur-[2px] md:mx-0 md:justify-start" variants={fadeUp}>
           <WeddingCountdown date={weddingDate} />
         </motion.div>
       )}

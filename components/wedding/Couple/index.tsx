@@ -58,7 +58,7 @@ export function Couple({ bride, groom }: CoupleProps) {
       <NonQuaiThao size={90} className="pointer-events-none absolute top-8 left-[var(--page-gutter)] text-[var(--color-primary)]/10" />
       {/* Ảnh liền chị nón quai thao — watermark chìm */}
       <div className="pointer-events-none absolute right-0 bottom-0 hidden opacity-[0.06] lg:block" aria-hidden="true">
-        <Image src="/images/bacninh/quanho5.jpg" alt="" width={420} height={600} className="object-contain object-right-bottom" />
+        <Image src="/images/bacninh/quanho5.jpg" alt="" width={420} height={600} className="h-auto w-[420px] object-contain object-right-bottom" />
       </div>
       <header className="relative grid gap-6 border-t border-[var(--color-border)] pt-7 md:grid-cols-[0.35fr_0.65fr] md:items-end">
         <Reveal>

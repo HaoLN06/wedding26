@@ -26,7 +26,7 @@ export function Hero({ data, bride, groom, weddingDate }: HeroProps) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[53%_42%] lg:object-[center_48%]"
+            className="object-cover object-[52%_40%] lg:object-[center_42%]"
           />
         </HeroBackgroundMotion>
       ) : (
@@ -49,8 +49,8 @@ export function Hero({ data, bride, groom, weddingDate }: HeroProps) {
         />
 
         <div className="absolute right-1/2 bottom-[max(1rem,env(safe-area-inset-bottom))] flex translate-x-1/2 flex-col items-center gap-2 md:right-[var(--page-gutter)] md:translate-x-0" aria-hidden="true">
-          <span className="text-[0.55rem] font-medium tracking-[0.25em] uppercase text-[color-mix(in_srgb,var(--color-on-image)_65%,transparent)]">Scroll</span>
-          <span className="h-7 w-px bg-[color-mix(in_srgb,var(--color-on-image)_55%,transparent)]" />
+          <span className="text-[0.55rem] font-medium tracking-[0.25em] uppercase text-[color-mix(in_srgb,var(--color-on-image)_72%,transparent)]">Scroll</span>
+          <span className="scroll-indicator" />
         </div>
       </div>
     </section>
