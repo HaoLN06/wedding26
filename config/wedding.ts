@@ -185,7 +185,7 @@ export const weddingConfig: WeddingConfig = {
   },
   music: {
     title: "Nhạc cưới",
-    autoplayAfterInvitation: true,
+    autoplayAfterInvitation: false,
     loop: true,
   },
   site: {

@@ -18,6 +18,12 @@ const sections: NavSection[] = [
   { id: "wedding-gift", label: "Mừng cưới" },
 ];
 
+const quickLinks: NavSection[] = [
+  { id: "rsvp", label: "RSVP" },
+  { id: "schedule", label: "Lịch trình" },
+  { id: "bank", label: "Gửi quà" },
+];
+
 export function FloatingNav() {
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -77,6 +83,27 @@ export function FloatingNav() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }
 
+  function openFirstMapLink() {
+    const mapLink = document.querySelector<HTMLAnchorElement>("#wedding-events a[href]");
+    if (mapLink?.href) {
+      window.open(mapLink.href, "_blank", "noopener,noreferrer");
+      return;
+    }
+    scrollTo("wedding-events");
+  }
+
+  function handleQuickAction(section: NavSection) {
+    if (section.id === "schedule") {
+      openFirstMapLink();
+      return;
+    }
+    scrollTo(section.id);
+  }
+
+  function backToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <>
       {/* Scroll progress bar */}
@@ -112,6 +139,57 @@ export function FloatingNav() {
                 <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap bg-[var(--color-foreground)] px-2.5 py-1 text-[0.65rem] font-medium tracking-[0.04em] text-[var(--color-on-image)] opacity-0 shadow-lg transition-opacity duration-[var(--duration-fast)] group-hover:opacity-100">
                   {section.label}
                 </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Sticky quick actions */}
+      <nav
+        className={`fixed top-[max(0.8rem,env(safe-area-inset-top))] left-1/2 z-30 w-[min(calc(100%-1.5rem),36rem)] -translate-x-1/2 transition-[opacity,transform] duration-300 ${visible ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-3 opacity-0"}`}
+        aria-label="Lối tắt nhanh"
+      >
+        <ul className="grid grid-cols-3 gap-2 border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface)_90%,white)] p-2 shadow-[var(--shadow-floating)] backdrop-blur-sm">
+          {quickLinks.map((section) => (
+            <li key={section.id}>
+              <button
+                className="flex min-h-10 w-full items-center justify-center border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-[0.64rem] font-semibold tracking-[0.12em] text-[var(--color-primary)] uppercase transition-colors duration-200 hover:border-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
+                type="button"
+                onClick={() => handleQuickAction(section)}
+              >
+                {section.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Back to top */}
+      <button
+        className={`fixed right-5 bottom-[max(5.6rem,calc(env(safe-area-inset-bottom)+5rem))] z-30 grid size-11 place-items-center border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-primary)] shadow-[var(--shadow-floating)] transition-[opacity,transform,border-color] duration-300 hover:border-[var(--color-primary)] ${visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"}`}
+        type="button"
+        onClick={backToTop}
+        aria-label="Lên đầu trang"
+      >
+        <span className="text-base" aria-hidden="true">↑</span>
+      </button>
+
+      {/* Mobile bottom navigation */}
+      <nav
+        className={`fixed inset-x-0 bottom-[max(0.55rem,env(safe-area-inset-bottom))] z-30 px-3 md:hidden transition-[opacity,transform] duration-300 ${visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"}`}
+        aria-label="Điều hướng nổi"
+      >
+        <ul className="mx-auto grid max-w-sm grid-cols-3 gap-2 border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface)_82%,white)] p-2 shadow-[var(--shadow-floating)] backdrop-blur-md">
+          {quickLinks.map((section) => (
+            <li key={`mobile-${section.id}`}>
+              <button
+                className="flex min-h-11 w-full flex-col items-center justify-center gap-1 border border-[var(--color-border)] bg-[var(--color-surface)] text-[0.62rem] font-semibold tracking-[0.08em] text-[var(--color-primary)] transition-colors duration-200 hover:border-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
+                type="button"
+                onClick={() => handleQuickAction(section)}
+              >
+                <span aria-hidden="true">{section.id === "rsvp" ? "✉" : section.id === "schedule" ? "⌖" : "❤"}</span>
+                <span>{section.label}</span>
               </button>
             </li>
           ))}

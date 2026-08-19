@@ -37,6 +37,7 @@ export function Hero({ data, bride, groom, weddingDate }: HeroProps) {
         className="absolute inset-0 -z-10 bg-[image:var(--hero-overlay)]"
         aria-hidden="true"
       />
+      <div className="absolute inset-0 -z-10 bg-black/30" aria-hidden="true" />
 
       <div className="mx-auto flex min-h-[100svh] w-full max-w-[var(--container-wide)] flex-col justify-end px-[var(--page-gutter)] pt-[max(4rem,env(safe-area-inset-top))] pb-[max(4.5rem,calc(env(safe-area-inset-bottom)+3.5rem))] supports-[height:100dvh]:min-h-[100dvh] md:items-start md:pb-20 lg:pb-24">
         <HeroContentMotion

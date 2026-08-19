@@ -145,7 +145,10 @@ export function AlbumExperience({ images }: AlbumExperienceProps) {
                 <button
                   className={`relative aspect-[4/3] w-24 shrink-0 overflow-hidden border transition-[opacity,border-color] duration-[var(--duration-base)] sm:w-32 ${index === selectedIndex ? "border-white opacity-100" : "border-white/25 opacity-55 hover:opacity-90"}`}
                   type="button"
-                  onClick={() => setSelectedIndex(index)}
+                  onClick={() => {
+                    setSelectedIndex(index);
+                    setLightboxIndex(index);
+                  }}
                   aria-label={`Xem ảnh ${index + 1}: ${image.alt}`}
                   aria-pressed={index === selectedIndex}
                   key={image.id}

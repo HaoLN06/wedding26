@@ -9,6 +9,7 @@ type WeddingGiftProps = { data: GiftConfig; bride: Person; groom: Person };
 export function WeddingGift({ data, bride, groom }: WeddingGiftProps) {
   return (
     <Section id="wedding-gift" width="content" className="relative overflow-hidden bg-[color-mix(in_srgb,var(--color-primary)_5%,var(--color-surface))]">
+      <span id="bank" className="relative -top-24 block" aria-hidden="true" />
       <span className="absolute top-8 right-[var(--page-gutter)]" aria-hidden="true">
         <NonQuaiThao size={56} className="text-[var(--color-primary)]/15" />
       </span>

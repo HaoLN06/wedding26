@@ -101,6 +101,7 @@ function EventDetails({ event, index }: { event: WeddingEvent; index: number }) 
 export function WeddingEvents({ events }: WeddingEventsProps) {
   return (
     <Section id="wedding-events" width="wide" className="bg-[var(--color-wine)] text-[var(--color-on-image)]">
+      <span id="schedule" className="relative -top-24 block" aria-hidden="true" />
       <Reveal>
         <header className="relative grid gap-8 border-t border-white/25 pt-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>

@@ -74,7 +74,7 @@ export function WeddingExperience({
         {children}
       </div>
       {music && (
-        <MusicPlayer music={music} shouldAutoplay={invitationPhase !== "closed"} visible={invitationPhase === "opened"} />
+        <MusicPlayer music={music} shouldAutoplay={false} visible={invitationPhase === "opened"} />
       )}
       {invitationPhase === "opened" && <FloatingNav />}
       {invitationPhase === "opened" && wishes && <FloatingWishes config={wishes} />}

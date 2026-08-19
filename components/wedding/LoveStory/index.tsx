@@ -63,9 +63,9 @@ export function LoveStory({ items }: LoveStoryProps) {
       </header>
 
       {featured ? (
-        <div className="mt-16 md:mt-24">
+        <div className="mt-20 md:mt-28">
           {/* Featured chapter */}
-          <article className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          <article className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-24">
             <Reveal preset="scaleReveal" amount={0.16}>
               <div className="relative overflow-hidden rounded-sm bg-[var(--color-border)] shadow-[0_12px_48px_rgb(57_46_42/12%)] md:aspect-[5/4] lg:aspect-[4/5]">
                 <div className="relative aspect-[4/5] md:aspect-[5/4] lg:aspect-[4/5]">
@@ -87,11 +87,11 @@ export function LoveStory({ items }: LoveStoryProps) {
           </article>
 
           {/* Timeline chapters — zigzag */}
-          <div className="relative mt-24 md:mt-32">
+          <div className="relative mt-28 md:mt-36">
             {/* Vertical line */}
             <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--color-border)] via-[var(--color-primary)]/20 to-[var(--color-border)] md:left-1/2 md:-translate-x-1/2" aria-hidden="true" />
 
-            <ol className="relative space-y-16 md:space-y-24">
+            <ol className="relative space-y-20 md:space-y-28">
               {chapters.map((item, index) => {
                 const isEven = index % 2 === 0;
                 return (

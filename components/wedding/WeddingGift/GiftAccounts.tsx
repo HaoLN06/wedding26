@@ -67,16 +67,23 @@ function QrVisual({ account }: { account: GiftAccount }) {
 export function GiftAccounts({ accounts, bride, groom }: GiftAccountsProps) {
   const [isOpen, setIsOpen] = useState(true);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [copyError, setCopyError] = useState<string | null>(null);
 
   async function copyAccount(account: GiftAccount) {
     try {
       await navigator.clipboard.writeText(account.accountNumber);
       setCopiedId(account.id);
+      setToastMessage("Đã sao chép!");
       setCopyError(null);
-      window.setTimeout(() => setCopiedId(null), 1800);
+      window.setTimeout(() => {
+        setCopiedId(null);
+        setToastMessage(null);
+      }, 2000);
     } catch {
       setCopyError(account.id);
+      setToastMessage("Không thể sao chép");
+      window.setTimeout(() => setToastMessage(null), 2000);
     }
   }
 
@@ -130,16 +137,24 @@ export function GiftAccounts({ accounts, bride, groom }: GiftAccountsProps) {
                         <dl className="mt-5 space-y-2 text-sm">
                           <div><dt className="sr-only">Ngân hàng</dt><dd className="font-semibold tracking-[0.04em]">{account.bankName}</dd></div>
                           <div><dt className="sr-only">Chủ tài khoản</dt><dd className="text-[var(--color-muted)]">{account.accountName}</dd></div>
-                          <div><dt className="sr-only">Số tài khoản</dt><dd className="break-all font-semibold tracking-[0.08em] text-[var(--color-primary)]">{account.accountNumber}</dd></div>
+                          <div>
+                            <dt className="sr-only">Số tài khoản</dt>
+                            <dd>
+                              <button
+                                className="break-all border-b border-[var(--color-primary)]/30 font-semibold tracking-[0.08em] text-[var(--color-primary)] transition-colors duration-[var(--duration-fast)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:border-transparent disabled:text-[var(--color-muted)]"
+                                type="button"
+                                disabled={unavailable}
+                                onClick={() => copyAccount(account)}
+                                aria-label={`Sao chép số tài khoản ${account.accountNumber}`}
+                              >
+                                {account.accountNumber}
+                              </button>
+                            </dd>
+                          </div>
                         </dl>
-                        <button
-                          className="mt-5 min-h-10 border-b border-[var(--color-primary)] text-[0.65rem] font-semibold tracking-[0.13em] text-[var(--color-primary)] uppercase transition-colors hover:text-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:border-[var(--color-border)] disabled:text-[var(--color-muted)]"
-                          type="button"
-                          disabled={unavailable}
-                          onClick={() => copyAccount(account)}
-                        >
-                          {unavailable ? "Đang cập nhật" : copiedId === account.id ? "Đã sao chép" : "Sao chép số tài khoản"}
-                        </button>
+                        <p className="mt-4 text-[0.62rem] font-semibold tracking-[0.12em] uppercase text-[var(--color-muted)]">
+                          {unavailable ? "Đang cập nhật" : copiedId === account.id ? "Đã sao chép" : "Chạm vào số tài khoản để sao chép"}
+                        </p>
                         {copyError === account.id && <p className="field-error" role="status">Không thể sao chép. Vui lòng thử lại.</p>}
                       </div>
                       <QrVisual account={account} />
@@ -148,6 +163,22 @@ export function GiftAccounts({ accounts, bride, groom }: GiftAccountsProps) {
                 </article>
               );
             })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-xs font-semibold tracking-[0.08em] text-[var(--color-primary)] shadow-[var(--shadow-floating)]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.22, ease: editorialEase }}
+            role="status"
+            aria-live="polite"
+          >
+            {toastMessage}
           </motion.div>
         )}
       </AnimatePresence>
