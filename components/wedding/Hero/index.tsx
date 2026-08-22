@@ -50,7 +50,7 @@ export function Hero({ data, bride, groom, weddingDate }: HeroProps) {
         />
 
         <div className="absolute right-1/2 bottom-[max(1rem,env(safe-area-inset-bottom))] flex translate-x-1/2 flex-col items-center gap-2 md:right-[var(--page-gutter)] md:translate-x-0" aria-hidden="true">
-          <span className="text-[0.55rem] font-medium tracking-[0.25em] uppercase text-[color-mix(in_srgb,var(--color-on-image)_72%,transparent)]">Scroll</span>
+          <span className="text-[0.85rem] font-medium tracking-[0.25em] text-[color-mix(in_srgb,var(--color-on-image)_72%,transparent)]">Kéo xuống nào</span>
           <span className="scroll-indicator" />
         </div>
       </div>

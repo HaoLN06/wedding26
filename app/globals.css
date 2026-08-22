@@ -160,8 +160,8 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
 
 .scroll-indicator {
   position: relative;
-  width: 1px;
-  height: 2.2rem;
+  width: 3px;
+  height: 4.2rem;
   background: color-mix(in srgb, var(--color-on-image) 48%, transparent);
   overflow: hidden;
 }
@@ -171,7 +171,7 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
   position: absolute;
   top: -40%;
   left: -1px;
-  width: 3px;
+  width: 6px;
   height: 42%;
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-on-image) 94%, white);

@@ -25,7 +25,7 @@ export const weddingConfig: WeddingConfig = {
       mother: "Bà [Tên mẹ chú rể]",
     },
   },
-  date: "2026-12-20T18:00:00+07:00",
+  date: "2026-12-01T18:00:00+07:00",
   invitation: {
     eyebrow: "Trân trọng kính mời",
     defaultGuestName: "Người thương mến",
@@ -33,8 +33,9 @@ export const weddingConfig: WeddingConfig = {
     openButtonLabel: "Mở thiệp",
   },
   hero: {
+    //public\images\riengtu\img7.jpg
     // image: "/images/bacninh/quanho3.jpg",public\images\hero-wedding.png
-    image: "/images/hero-wedding.png",
+    image: "/images/riengtu/img14.jpg",
     imageAlt: "Hào và Nam nắm tay nhau, mỉm cười hạnh phúc trong khung cảnh lụa mềm tối giản",
     eyebrow: "Duyên quan họ — Nghĩa trăm năm",
     showCountdown: true,
