@@ -13,7 +13,7 @@ function TimelineDot({ index }: { index: number }) {
         <span className="size-2.5 rounded-full bg-[var(--color-primary)]" />
       </span>
       <span className="absolute top-0 left-1/2 -z-10 h-full w-px -translate-x-1/2 bg-gradient-to-b from-[var(--color-border)] to-transparent" />
-      <span className="mt-3 font-[family-name:var(--font-serif)] text-xs italic text-[var(--color-primary)]/60">
+      <span className="mt-3 font-[family-name:var(--font-serif)] text-base italic text-[var(--color-primary)]/60">
         {String(index + 1).padStart(2, "0")}
       </span>
     </div>
@@ -53,7 +53,7 @@ export function LoveStory({ items }: LoveStoryProps) {
           </h2>
         </Reveal>
         <Reveal delay={0.12}>
-          <p className="mt-12 max-w-xl text-lg leading-8 text-[var(--color-muted)] md:mt-16 md:ml-auto md:text-xl md:leading-9">
+          <p className="pt-4 mt-12 max-w-xl text-lg leading-8 text-[var(--color-muted)] md:mt-16 md:ml-auto md:text-xl md:leading-9">
             Không bắt đầu bằng điều phi thường. Chỉ là hai người, qua từng ngày, vẫn chọn ở lại bên nhau.
           </p>
         </Reveal>
@@ -142,11 +142,7 @@ export function LoveStory({ items }: LoveStoryProps) {
             </ol>
 
             {/* End dot */}
-            <div className="absolute bottom-0 left-5 md:left-1/2 md:-translate-x-1/2" aria-hidden="true">
-              <span className="grid size-10 place-items-center rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-surface)]">
-                <HoaSen size={20} className="text-[var(--color-primary)]" />
-              </span>
-            </div>
+ 
           </div>
         </div>
       ) : (

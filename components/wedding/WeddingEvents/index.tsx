@@ -105,7 +105,7 @@ export function WeddingEvents({ events }: WeddingEventsProps) {
       <Reveal>
         <header className="relative grid gap-8 border-t border-white/25 pt-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>
-          <p className="text-[0.67rem] font-semibold tracking-[0.22em] text-[var(--color-on-image-accent)] uppercase">03 · Ngày lành tháng tốt</p>
+          <p className="text-[0.85rem] font-semibold tracking-[0.22em] text-[var(--color-on-image-accent)] uppercase">03 · Ngày lành tháng tốt</p>
           <TrongDong size={52} className="mt-4 text-[var(--color-on-image-accent)]/40" />
         </div>
         <div>

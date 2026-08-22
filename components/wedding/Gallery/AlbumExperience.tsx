@@ -10,6 +10,10 @@ type AlbumExperienceProps = { images: GalleryImage[] };
 
 const framePositions = ["object-[48%_40%]", "object-[62%_38%]", "object-[44%_50%]"];
 
+function getFramePosition(index: number) {
+  return framePositions[index % framePositions.length];
+}
+
 export function AlbumExperience({ images }: AlbumExperienceProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -64,24 +68,28 @@ export function AlbumExperience({ images }: AlbumExperienceProps) {
 
             <div className="grid gap-1.5 md:grid-cols-12 md:gap-2">
               {filmFrames.slice(0, 3).map((image, index) => (
-                <figure
-                  className={`album-reveal relative overflow-hidden bg-[#26221f] ${index === 0 ? "aspect-[4/5] md:col-span-7 md:row-span-2 md:aspect-auto md:min-h-[52rem]" : "aspect-[4/3] md:col-span-5 md:min-h-[25.75rem]"}`}
+                <button
+                  className={`album-reveal group relative block w-full cursor-zoom-in overflow-hidden bg-[#26221f] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${index === 0 ? "aspect-[4/5] md:col-span-7 md:row-span-2 md:aspect-auto md:min-h-[52rem]" : "aspect-[4/3] md:col-span-5 md:min-h-[25.75rem]"}`}
                   data-album-reveal
                   style={{ transitionDelay: `${index * 110}ms` }}
                   key={`${image.id}-film-${index}`}
+                  type="button"
+                  onClick={() => setLightboxIndex(index)}
+                  aria-label={`Mở ảnh ${index + 1}: ${image.alt}`}
                 >
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
                     sizes={index === 0 ? "(max-width: 767px) calc(100vw - 64px), 58vw" : "(max-width: 767px) calc(100vw - 64px), 38vw"}
-                    className={`album-film-image object-cover ${framePositions[index]}`}
+                    className={`album-film-image object-cover ${getFramePosition(index)}`}
                   />
                   <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-5 pt-16 pb-5 text-center text-xs leading-5 text-white md:px-7 md:pb-7 md:text-sm">
                     {image.caption || "You are my favorite place to be."}
                   </span>
                   <span className="absolute top-4 left-4 text-[0.58rem] font-semibold tracking-[0.16em] text-white/75" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                </figure>
+                  <span className="absolute top-4 right-4 border border-white/30 bg-black/20 px-2 py-1 text-[0.52rem] font-semibold tracking-[0.14em] text-white/0 uppercase backdrop-blur-sm transition-colors group-hover:text-white group-focus-visible:text-white">Mở ảnh</span>
+                </button>
               ))}
             </div>
           </div>
@@ -119,7 +127,7 @@ export function AlbumExperience({ images }: AlbumExperienceProps) {
                     alt={selectedImage.alt}
                     fill
                     sizes="(max-width: 767px) calc(100vw - 56px), 88vw"
-                    className={`album-stage-image object-cover ${framePositions[selectedIndex % framePositions.length]}`}
+                    className={`album-stage-image object-cover ${getFramePosition(selectedIndex)}`}
                   />
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 bg-gradient-to-t from-black/75 to-transparent px-5 pt-24 pb-5 sm:px-8 sm:pb-8">
                     <p className="max-w-xl font-[family-name:var(--font-serif)] text-xl italic sm:text-2xl" aria-live="polite">
@@ -140,20 +148,29 @@ export function AlbumExperience({ images }: AlbumExperienceProps) {
               )}
             </div>
 
-            <div className="mt-5 flex gap-3 overflow-x-auto pb-3" aria-label="Chọn ảnh trong album">
+              <div className="mt-5 flex items-center justify-between gap-4">
+                <p className="text-[0.62rem] font-semibold tracking-[0.16em] text-white/55 uppercase">Chọn khoảnh khắc</p>
+                <button
+                  className="border-b border-white/35 pb-1 text-[0.62rem] font-semibold tracking-[0.14em] text-white/85 uppercase transition-colors hover:border-white hover:text-white"
+                  type="button"
+                  onClick={() => setLightboxIndex(selectedIndex)}
+                >
+                  Xem toàn màn hình
+                </button>
+              </div>
+              <div className="mt-3 flex gap-3 overflow-x-auto pb-3" aria-label="Chọn ảnh trong album">
               {images.map((image, index) => (
                 <button
                   className={`relative aspect-[4/3] w-24 shrink-0 overflow-hidden border transition-[opacity,border-color] duration-[var(--duration-base)] sm:w-32 ${index === selectedIndex ? "border-white opacity-100" : "border-white/25 opacity-55 hover:opacity-90"}`}
                   type="button"
                   onClick={() => {
                     setSelectedIndex(index);
-                    setLightboxIndex(index);
                   }}
                   aria-label={`Xem ảnh ${index + 1}: ${image.alt}`}
                   aria-pressed={index === selectedIndex}
                   key={image.id}
                 >
-                  <Image src={image.src} alt="" fill sizes="128px" className={`object-cover ${framePositions[index % framePositions.length]}`} />
+                  <Image src={image.src} alt="" fill sizes="128px" className={`object-cover ${getFramePosition(index)}`} />
                 </button>
               ))}
             </div>

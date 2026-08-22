@@ -1,6 +1,6 @@
 import type { GalleryImage } from "@/types/wedding";
 import { Reveal } from "@/components/motion/Reveal";
-import { AlbumExperience } from "./AlbumExperience";
+import { AlbumGallery } from "@/components/wedding/AlbumGallery";
 import { NonQuaiThao } from "@/components/ui/QuanHoIcons";
 
 type GalleryProps = { images: GalleryImage[] };
@@ -25,7 +25,7 @@ export function Gallery({ images }: GalleryProps) {
       </header>
 
       {images.length ? (
-        <AlbumExperience images={images} />
+        <AlbumGallery images={images} />
       ) : (
         <div className="mx-auto mb-[var(--section-space-md)] w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
           <div className="border-y border-[var(--color-border)] py-16">

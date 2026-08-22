@@ -102,7 +102,7 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
 }
 .text-eyebrow {
   color: var(--color-primary);
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   line-height: 1.4;
@@ -250,7 +250,8 @@ a:hover { color: var(--color-primary-hover); text-decoration-color: currentColor
 }
 .album-reveal[data-visible="true"] { opacity: 1; transform: translateY(0); }
 .album-film-image { transition: transform 1.4s var(--ease-editorial), filter 0.8s ease; }
-.album-reveal:hover .album-film-image { filter: saturate(1.06) brightness(1.02); transform: scale(1.03); }
+.album-reveal:hover .album-film-image,
+.album-reveal:focus-visible .album-film-image { filter: saturate(1.06) brightness(1.02); transform: scale(1.03); }
 .album-stage-image { animation: album-stage-in 800ms var(--ease-editorial) both; }
 .album-arrow {
   display: grid;

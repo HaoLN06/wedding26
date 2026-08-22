@@ -8,7 +8,6 @@ import { HoaSen } from "@/components/ui/QuanHoIcons";
 type WishErrors = { name?: string; message?: string };
 
 export const OPEN_WISHES_POPUP_EVENT = "wedding:open-wishes-popup";
-export const WISHES_POPUP_VISIBILITY_EVENT = "wedding:wishes-popup-visibility";
 
 export function FloatingWishes({ config, showTrigger = true }: { config: WishesConfig; showTrigger?: boolean }) {
   const [open, setOpen] = useState(false);
@@ -25,10 +24,6 @@ export function FloatingWishes({ config, showTrigger = true }: { config: WishesC
     window.addEventListener(OPEN_WISHES_POPUP_EVENT, handleOpen);
     return () => window.removeEventListener(OPEN_WISHES_POPUP_EVENT, handleOpen);
   }, []);
-
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent(WISHES_POPUP_VISIBILITY_EVENT, { detail: { open } }));
-  }, [open]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
