@@ -127,7 +127,7 @@ export function RSVPForm({ config, events }: RSVPFormProps) {
       {config.allowMessage && (
         <div className="mt-8">
           <label className="field-label" htmlFor="message">Lời nhắn <span className="font-normal normal-case text-[var(--color-muted)]">(không bắt buộc)</span></label>
-          <textarea className="field-control min-h-32 resize-y" id="message" name="message" maxLength={500} placeholder="Gửi đôi lời đến cô dâu và chú rể…" aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : "message-hint"} />
+          <textarea className="field-control min-h-32 resize-y" id="message" name="message" maxLength={500} placeholder="Chúc hai bạn trăm năm hạnh phúc nhé! ❤️" aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : "message-hint"} />
           <p className="mt-2 text-xs text-[var(--color-muted)]" id="message-hint">Tối đa 500 ký tự</p>
           <FieldError id="message-error" message={errors.message} />
         </div>

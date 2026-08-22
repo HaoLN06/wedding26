@@ -1,5 +1,5 @@
 import { Hero } from "@/components/wedding/Hero";
-import { Couple } from "@/components/wedding/Couple";
+import { CoupleSection } from "@/components/wedding/CoupleSection";
 import { LoveStory } from "@/components/wedding/LoveStory";
 import { WeddingEvents } from "@/components/wedding/WeddingEvents";
 import { Gallery } from "@/components/wedding/Gallery";
@@ -29,7 +29,7 @@ export default function HomePage() {
         groom={couple.groom}
         weddingDate={weddingConfig.date}
       />
-      {features.couple && <Couple bride={couple.bride} groom={couple.groom} />}
+      {features.couple && <CoupleSection />}
       <SectionDivider variant="dots" />
       {features.loveStory && <LoveStory items={weddingConfig.loveStory} />}
       <SectionDivider variant="wave" />

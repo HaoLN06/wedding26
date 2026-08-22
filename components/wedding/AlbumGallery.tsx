@@ -26,7 +26,7 @@ export function AlbumGallery({ images = weddingConfig.gallery }: AlbumGalleryPro
   if (!images.length) return null;
 
   return (
-    <section className="relative overflow-hidden bg-[#4a0d22] px-[var(--page-gutter)] py-16 text-[var(--color-on-image)] sm:py-24">
+    <section className="relative overflow-hidden bg-[#4a0d22] px-[var(--page-gutter)] py-16 text-[var(--color-on-image)] sm:py-12">
       <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(rgb(250_230_190_/_0.35)_0.6px,transparent_0.6px)] [background-size:8px_8px]" aria-hidden="true" />
       <div className="relative mx-auto max-w-[var(--container-wide)]">
         <header className="mx-auto max-w-2xl text-center">
